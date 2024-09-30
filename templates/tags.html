@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+<!-- Title -->
+{% block title %}Tags{% endblock %}
+
+<!-- Content -->
+{% block content %}
+<link rel="stylesheet" href="/static/tags.css">
+<!-- Tags Grid -->
+<div class="tags-grid">
+    <h2>Tags</h2>
+    <div id="tag-list">
+        {% for tag_name in tag_names %}
+            <a href="{{ url_for('views.recipes_by_tag', tag_name=tag_name) }}" class="tag">{{ tag_name }}</a>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Add Tag Button -->
+<button id="add-tag-btn" onclick="showTagInput()">Add Tag</button>
+
+
+<!-- Tag Input and Save Button -->
+<div id="tag-input" style="display: none;">
+    <form id="add-tag-form" method="POST" action="{{ url_for('views.add_tag') }}">
+        <input type="text" id="tag-name-input" name="tag_name" class="form-control">
+        <button type="submit" class="btn-primary">Save Tag</button>
+    </form>
+</div>
+
+
+
+<!-- tags JS-->
+<script type="text/javascript" src="{{ url_for('static', filename='tags.js')}}"></script>
+
+{% endblock %}

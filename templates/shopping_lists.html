@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+<!-- Title -->
+{% block title %}Shopping Lists{% endblock %}
+
+<!-- Content -->
+{% block content %}
+    <!-- CSS Ref -->
+    <link rel="stylesheet" href="/static/shoppinglist.css">
+    <h1>Shopping Lists</h1>
+
+    {% for item in shopping_list %}
+        <div class="container {% if item['WeekNumber'] == current_week %}current-week{% endif %}">
+            <h2>Week {{ item['WeekNumber'] }} Tesco Delivery: {{ item['StartDate'].strftime('%d/%m') }}</h2>
+            <table class="ingredient-table">
+                <tbody>
+                    {% for recipe_name, ingredients in item['RecipeIngredients'].items() %}
+                        <tr>
+                            <td colspan="3"><span class="category"><h4><a href="{{ url_for('views.view_recipe', recipe_id=ingredients[0]['RecipeID']) }}">{{ recipe_name }}</a></h4></span></td>
+                        </tr>
+                        {% for ingredient in ingredients %}
+                        <tr>
+                            <td><span class="quantity">{{ ingredient['Quantity'] }}{{ ingredient['Unit'] }}</span></td>
+                            <td class="ingredient-cell">{{ ingredient['IngredientName'] }}</td>
+                        </tr>
+                        {% endfor %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endfor %}
+{% endblock %}

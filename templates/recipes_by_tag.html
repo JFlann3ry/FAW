@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+<!-- Title -->
+{% block title %}Recipes for {{ tag_name }}{% endblock %}
+
+<!-- Content -->
+{% block content %}
+<link rel="stylesheet" href="/static/recipetags.css"> <!-- Link to your CSS file -->
+    <h2>Recipes for {{ tag_name }}</h2>
+    <div class="recipe-grid">
+        {% for recipe in recipes %}
+            <div class="recipe-item">
+                <a href="{{ url_for('views.view_recipe', recipe_id=recipe.ID) }}">
+                    {% if recipe.Photo %}
+                        <img class="recipe-photo" src="data:image/jpeg;base64,{{ recipe.Photo }}" alt="Recipe Photo">
+                    {% endif %}
+                    <p class="recipe-name">{{ recipe.RecipeName }}</p>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+

@@ -1,0 +1,43 @@
+/* Body styles */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #1a1a1a;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+/* NavBar styles */
+.navbar {
+  width: 100%;
+  background-color: #2d2d2d;
+  padding: 0 0; /* Adjusted padding to reduce height */
+  text-align: center; /* Center aligning the content */
+  position: fixed;
+  top: 0;
+  left: 0; /* Added to ensure navbar sticks to the left */
+  z-index: 1000; /* Added to ensure it stays on top of other content */
+}
+
+.menu-links {
+  display: flex; /* Use flexbox */
+  flex-wrap: wrap; /* Allow links to wrap onto the next line */
+  justify-content: center; /* Center align the links */
+}
+
+.page-link-button {
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  margin: 5px; /* Add some margin between links */
+}
+
+.page-link-button:hover {
+  background-color: #37076e;
+}
+
+.space {
+  height: 110px; /* Adjusted height */
+}

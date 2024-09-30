@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ingredient Tracker</title>
+<link rel="stylesheet" href="/static/ingredients.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Add New Ingredient</h1>
+    <form action="/ingredients" method="POST"> <!-- Added form tag -->
+      <input type="text" id="ingredient" name="ingredient" placeholder="Ingredient">
+      <input type="text" id="instructions" name="instructions" placeholder="Instructions">
+      <input type="number" id="quantity" name="quantity" placeholder="Quantity">
+      <input type="text" id="unit" name="unit" placeholder="Unit">
+      <input type="text" id="category" name="category" placeholder="Category">
+      <button type="submit">Add Ingredient</button> <!-- Changed to type="submit" -->
+    </form>
+    <table id="ingredientTable">
+      <thead>
+        <tr>
+          <th>Ingredient</th>
+          <th>Instructions</th>
+          <th>Quantity</th>
+          <th>Unit of Measurement</th>
+          <th>Category</th>
+        </tr>
+      </thead>
+      <tbody id="ingredientBody">
+        {% for ingredient in ingredients %}
+        <tr data-id="{{ ingredient[0] }}"> <!-- Added data-id attribute -->
+            <td>{{ ingredient[1] }}</td>
+            <td>{{ ingredient[2] }}</td>
+            <td>{{ ingredient[3] }}</td>
+            <td>{{ ingredient[4] }}</td>
+            <td>{{ ingredient[5] }}</td>
+            <td><button onclick="deleteIngredient('{{ ingredient[0] }}')">Delete</button></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    
+  </div>
+
+  <script type="text/javascript" src="{{ url_for('static', filename='ingredients.js')}}"></script>
+</body>
+</html>

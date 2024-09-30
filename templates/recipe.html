@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+<!-- Title -->
+{% block title %}{{ recipe.RecipeName }}{% endblock %}
+
+<!-- Content -->
+{% block content %}
+
+    <h2>{{ recipe.RecipeName }}</h2>
+    <div class="recipe-photo">
+        {% if photo_data_base64 %}
+    <img src="data:image/jpeg;base64,{{ photo_data_base64 }}" alt="Recipe Photo">
+{% endif %}
+    </div>
+    
+    <p>{{ recipe.Description }}</p>
+    <p><a href="url" style="color: white;">{{ recipe.URL }}</a></p>
+
+    
+    
+    <h3>Tags</h3>
+    <div class="tags-grid">
+        {% for tag in tags %}
+            <a href="{{ url_for('views.recipes_by_tag', tag_name=tag) }}" class="tag">{{ tag }}</a>
+        {% endfor %}
+    </div>
+    
+    <h3>Ingredients</h3>
+    <table class="ingredient-table">
+
+        <tbody>
+            {% for category, ingredient_list in ingredients_by_category.items() %}
+                <tr>
+                    <td colspan="3"><span class="category"><h4>{{ category }}</h4></span></td>
+                </tr>
+                {% for ingredient in ingredient_list %}
+                <tr>
+                    <td><span class="quantity">{{ ingredient.Quantity }}{{ ingredient.Unit }} </span></td>
+                    <td class="ingredient-name">&nbsp; {{ ingredient.IngredientName }} </td>
+                    <td class="instruction">{{ ingredient.Instruction }}</td>
+                </tr>
+                
+                {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>
+
+        
+
+    <h3>Method</h3>
+            
+    <p><strong>Oven Temperature</strong> {{ recipe.OvenTemp }}°C</p>
+    <p><strong>Time</strong> {{ recipe.Time }}</p>
+    
+    <ol>
+        {% for step in steps %}
+            <li>{{ step }}</li>
+        {% endfor %}
+    </ol>
+
+    <!-- Form to add recipe to a week on the meal planner -->
+<h3>Add to Meal Planner</h3>
+<form action="{{ url_for('views.add_to_meal_planner') }}" method="post">
+    <input type="hidden" name="recipe_id" value="{{ recipe.ID }}">
+    <label for="week_number">Select Week</label>
+    <select name="week_number" id="week_number">
+        {% for week_number in future_weeks %}
+            <option value="{{ week_number }}">Week {{ week_number }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit">Add to Week</button>
+</form>
+
+<!-- CSS Ref -->
+<link rel="stylesheet" href="{{ url_for('static', filename='recipe.css')}}">
+
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}{{ recipe.recipeName }}{% endblock %}
+
+{% block content %}
+
+  <h1>{{ recipe.recipeName }}</h1>
+  <p>Description: {{ recipe.description }}</p>
+  <p>Link: <a href="{{ recipe.link }}">{{ recipe.link }}</a></p>
+  <p>Oven Temperature: {{ recipe.ovenTemp }}</p>
+  <p>Time: {{ recipe.time }}</p>
+  
+  <h2>Ingredients</h2>
+  <table>
+      <thead>
+          <tr>
+              <th>Ingredient</th>
+              <th>Instructions</th>
+              <th>Quantity</th>
+              <th>Unit</th>
+              <th>Category</th>
+          </tr>
+      </thead>+
+      <tbody>
+ 
+      </tbody>
+  </table>
+  
+  
+  
+  
+  
+  <h2>Steps</h2>
+  <ol>
+      {% for step in steps %}
+          <li>{{ step.stepText }}</li>
+      {% endfor %}
+  </ol>
+
+{% endblock %}

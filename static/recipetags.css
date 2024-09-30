@@ -1,0 +1,83 @@
+/* Body styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #1a1a1a;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* Title styles */
+h2 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* Recipe list styles */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 20px;
+}
+
+/* Recipe photo styles */
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Recipe name styles */
+a {
+    color: #fff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+/* Recipe grid styles */
+.recipe-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 20px;
+    justify-items: center;
+}
+
+/* Recipe item styles */
+.recipe-item {
+    text-align: center;
+}
+
+/* Recipe photo styles */
+.recipe-photo {
+    width: 200px; /* Adjust photo size */
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    cursor: pointer; /* Add cursor pointer for better UX */
+}
+
+/* Recipe name styles */
+.recipe-name {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer; /* Add cursor pointer for better UX */
+}
+
+/* Style for hyperlink text */
+.recipe-name a {
+    color: #fff; /* White text color */
+    text-decoration: none; /* Remove underline */
+}
+
+/* Style for hyperlink text on hover */
+.recipe-name a:hover {
+    text-decoration: underline; /* Add underline on hover */
+}

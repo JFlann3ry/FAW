@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+<!-- Title -->
+{% block title %}Recipe Listing{% endblock %}
+<!-- CSS Ref -->
+
+
+
+<!-- Content -->
+{% block content %}
+<div class="container">
+    <h2>Recipe Listing for Week {{ week_number }}</h2>
+    
+    <!-- Search Form -->
+    <form action="{{ url_for('views.recipe_listing', week_number=week_number) }}" method="GET">
+        <label for="search_query">Search by Recipe Name or Tags</label>
+        <input type="text" id="search_query" name="search_query">
+        <button type="submit">Search</button>
+    </form>
+    
+    <!-- Display Filtered Recipes -->
+    <div class="recipe-grid">
+        {% for recipe in recipes %}
+            <div class="recipe-item">
+                <a href="{{ url_for('views.view_recipe', recipe_id=recipe.ID) }}">
+                    <img class="recipe-photo" src="data:image/jpeg;base64,{{ recipe.Photo }}" alt="Recipe Photo">
+                </a>
+                <p class="recipe-name">
+                    <a href="{{ url_for('views.view_recipe', recipe_id=recipe.ID) }}">{{ recipe.RecipeName }}</a>
+                </p>
+                <form action="{{ url_for('views.add_recipe_to_meal_planner', recipe_id=recipe.ID, week_number=week_number) }}" method="POST">
+                    <button type="submit">Add to Week {{ week_number }}</button>
+                </form>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<link rel="stylesheet" href="/static/recipelisting.css">
+{% endblock %}

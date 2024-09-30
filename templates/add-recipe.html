@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+<!-- Title -->
+{% block title %}Add Recipe{% endblock %}
+
+<!-- Content -->
+{% block content %}
+
+<form method="POST" action="/save-recipe" enctype="multipart/form-data">
+    <h2>Recipe Details</h2>
+    <!-- Recipe Name -->
+    
+    <input type="text" id="recipe_name" name="recipe_name" maxlength="50" required placeholder="Recipe Name"><br>
+
+    <!-- Description -->
+    
+    <textarea id="description" name="description" maxlength="500" rows="4" cols="50" placeholder="Description"></textarea><br>
+
+    
+<!-- URL -->
+
+<input type="text" id="url" name="url" placeholder="URL"><br>
+
+<!-- Oven Temp -->
+
+<input type="number" id="oven_temp" name="oven_temp" placeholder="Oven Temp"><br>
+
+<!-- Time -->
+
+<input type="text" id="time" name="time" placeholder="Time"><br>
+
+    <!-- Tags -->
+    <h2>Tags</h2>
+    <div id="tag-section">
+        <!-- Existing tags -->
+        {% for tag_id, tag_name in tag_names %}
+            <input type="checkbox" id="tag_{{ tag_id }}" name="tags" value="{{ tag_id }}">
+            <label for="tag_{{ tag_id }}">{{ tag_name }}</label><br>
+        {% endfor %}
+
+        <!-- Add new tag input -->
+        <ul id="tag-list">
+            <!-- Tag list will be dynamically populated here -->
+        </ul>
+    </div>
+    <!-- Photo Upload -->
+    <h2>Photo</h2>
+    <input type="file" id="photo" name="photo" accept="image/*"><br>
+
+
+
+
+<!-- Ingredients -->
+<h2>Ingredients</h2>
+<div id="ingredients">
+    <!-- Initial ingredient fields -->
+    <div class="ingredient">
+        <input type="text" name="ingredient_name[]" placeholder="Ingredient Name">
+        <input type="text" name="instruction[]" placeholder="Instruction">
+        <input type="text" name="quantity[]" placeholder="Quantity">
+        <input type="text" name="unit[]" placeholder="Unit">
+        <input type="text" name="category[]" placeholder="Category">
+     </div>
+</div>
+<button type="button" id="add_ingredient">Add Ingredient</button><br>
+
+<!-- Steps -->
+<h2>Steps</h2>
+<div id="steps">
+    <!-- Initial instruction field -->
+    <div>
+        <textarea class="steps" name="step[]" maxlength="256" rows="4" cols="50" placeholder="Step 1"></textarea>
+    </div>
+</div>
+<button type="button" id="add_step">Add Step</button><br>
+<input type="hidden" id="step_count" name="step_count" value="1">
+
+<!-- Save Button -->
+<button type="submit">Save Recipe</button>
+
+
+<!-- CSS Ref -->
+<link rel="stylesheet" href="{{ url_for('static', filename='addrecipe.css')}}">
+
+<!-- JS Ref-->
+<script type="text/javascript" src="{{ url_for('static', filename='addrecipe.js')}}"></script>
+
+{% endblock %}

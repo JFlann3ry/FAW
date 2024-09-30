@@ -1,0 +1,94 @@
+body {
+
+    padding-left: 20px;
+
+}
+
+/* Tags Grid */
+.tags-grid {
+    margin-bottom: 20px;
+
+}
+
+/* Tag style */
+.tag {
+    background-color: #73bb00;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    margin-right: 5px;
+    margin-bottom: 10px; /* Increased margin-bottom */
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    display: inline-block; /* Display tags inline */
+}
+
+.tag:hover {
+    background-color: #45a049;
+}
+
+/* Button style */
+.btn-primary {
+    background-color: #ff13f3;
+    border: none;
+    color: #FFF7F3;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+   }
+
+.btn-primary:hover {
+    background-color: #D23E1D;
+}
+
+/* Input style */
+.form-control {
+    width: calc(100% - 20px);
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+
+}
+
+/* Label style */
+label {
+    color: #220021;
+}
+
+/* Links style */
+a {
+    color: #ffffff;
+}
+
+/* Add Tag Button */
+#add-tag-btn {
+    background-color: #2196F3; /* Blue color */
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px; /* Add margin to separate from other buttons */
+}
+
+#add-tag-btn:hover {
+    background-color: #1976D2; /* Darker shade of blue on hover */
+}
+
+/* Edit Tags Button */
+#edit-tags-btn {
+    background-color: #FF9800; /* Orange color */
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+#edit-tags-btn:hover {
+    background-color: #F57C00; /* Darker shade of orange on hover */
+}

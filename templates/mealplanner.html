@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+<!-- Title -->
+{% block title %}Meal Planner{% endblock %}
+
+<!-- Content -->
+{% block content %}
+
+<!-- CSS Ref -->
+<link rel="stylesheet" href="{{ url_for('static', filename='mealplanner.css')}}">
+
+<h2>Meal Planner</h2>
+
+<!-- Form to add a new week -->
+<form action="{{ url_for('views.add_week_to_meal_planner') }}" method="POST">
+    <label for="start_date">Start Date:</label>
+    <input type="date" id="start_date" name="start_date" required>
+    <button type="submit">Add Week</button>
+</form>
+
+<!-- Loop through meal plans and display each week along with the "Add New Recipe" button -->
+{% for meal_plan in meal_plans %}
+    {% if meal_plan.EndDate >= current_date %}
+        <div class="week-container {% if meal_plan.WeekNumber == current_week %}current-week{% endif %}">
+            <h3>Week {{ meal_plan.WeekNumber }} ({{ meal_plan.StartDate.strftime('%d/%m') }} to {{ meal_plan.EndDate.strftime('%d/%m') }})</h3>
+            <a href="{{ url_for('views.recipe_listing', week_number=meal_plan.WeekNumber) }}"><button>Add New Recipe</button></a>
+            <!-- Display recipes in a grid -->
+            <div class="recipe-grid">
+                {% for recipe in meal_plan.recipes %}
+                    <div class="recipe-item">
+                        <a href="{{ url_for('views.view_recipe', recipe_id=recipe.ID) }}">
+                            <img class="recipe-photo" src="data:image/jpeg;base64,{{ recipe.RecipePhoto }}" alt="Recipe Photo">
+                        </a>
+                        <p class="recipe-name">
+                            <a href="{{ url_for('views.view_recipe', recipe_id=recipe.ID) }}">{{ recipe.RecipeName }}</a>
+                        </p>
+                        <!-- Add remove button -->
+                        <form action="{{ url_for('views.remove_recipe_from_week', recipe_id=recipe.ID, week_number=meal_plan.WeekNumber) }}" method="POST">
+                            <button type="submit">Remove</button>
+                        </form>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+{% endfor %}
+
+
+{% endblock %}

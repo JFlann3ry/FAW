@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <!-- Title -->   
+    <title>{% block title %}{% endblock title %}</title>
+    <!-- CSS Ref -->
+    <link rel="stylesheet" href="/static/navbar.css">
+</head>
+<body>
+ <!-- NavBar -->
+ <div class="navbarcontainer">
+<div class="navbar">
+    <div class="menu-icon" onclick="toggleMenu()">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+    <div class="menu-links" id="menuLinks">
+      <a href="{{ url_for('views.addRecipe') }}" class="page-link-button">Add Recipe ➕</a>
+      <a href="{{ url_for('views.search') }}" class="page-link-button">Search 🔍</a>
+      <a href="{{ url_for('views.tags') }}" class="page-link-button">Tags 🏷️</a>
+      <a href="{{ url_for('views.mealPlanner') }}" class="page-link-button">Meal Planner 📆 </a>
+      <a href="{{ url_for('views.shopping_lists') }}" class="page-link-button">Shopping Lists 📝</a>
+    </div>
+    </div>
+</div>
+
+<div class="space"></div>
+    
+    <script type="text/javascript" src="{{ url_for('static', filename='navbar.js')}}"></script>
+
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

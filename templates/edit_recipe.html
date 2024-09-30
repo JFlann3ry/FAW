@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block title %}Edit Recipe - {{ recipe.RecipeName }}{% endblock %}
+{% block content %}
+    <h2>Edit Recipe - {{ recipe.RecipeName }}</h2>
+    <form method="POST" action="{{ url_for('views.update_recipe', recipe_id=recipe.ID) }}" enctype="multipart/form-data">
+
+        <!-- Recipe Name -->
+        <label for="recipe_name">Recipe Name:</label>
+        <input type="text" id="recipe_name" name="recipe_name" value="{{ recipe.RecipeName }}"><br><br>
+        
+        <!-- Description -->
+        <label for="description">Description:</label>
+        <textarea id="description" name="description">{{ recipe.Description }}</textarea><br><br>
+        
+        <!-- URL -->
+        <label for="url">URL:</label>
+        <input type="text" id="url" name="url" value="{{ recipe.URL }}"><br><br>
+        
+        <!-- Oven Temperature -->
+        <label for="oven_temp">Oven Temperature:</label>
+        <input type="text" id="oven_temp" name="oven_temp" value="{{ recipe.OvenTemp }}"><br><br>
+        
+        <!-- Time -->
+        <label for="time">Time:</label>
+        <input type="text" id="time" name="time" value="{{ recipe.Time }}"><br><br>
+        
+        <!-- Tags -->
+        <label>Tags:</label><br>
+        {% for tag_name in tag_names %}
+            <input type="checkbox" id="tag_{{ loop.index }}" name="tags" value="{{ loop.index }}" {% if tag_name in tags %} checked {% endif %}>
+            <label for="tag_{{ loop.index }}">{{ tag_name }}</label><br>
+        {% endfor %}
+        <br>
+        
+        <!-- Photo -->
+        <label for="photo">Photo:</label>
+        <input type="file" id="photo" name="photo"><br><br>
+        
+        <!-- Ingredients -->
+        <label for="ingredients">Ingredients:</label><br>
+        <div id="ingredient-container">
+            {% for ingredient in ingredients %}
+                <div class="ingredient">
+                    <input type="text" name="ingredient_name[]" value="{{ ingredient.IngredientName }}" placeholder="Ingredient Name">
+                    <input type="text" name="instruction[]" value="{{ ingredient.Instruction }}" placeholder="Instruction">
+                    <input type="text" name="quantity[]" value="{{ ingredient.Quantity }}" placeholder="Quantity">
+                    <input type="text" name="unit[]" value="{{ ingredient.Unit }}" placeholder="Unit">
+                    <input type="text" name="category[]" value="{{ ingredient.Category }}" placeholder="Category">
+                    <button type="button" class="remove-ingredient">Remove</button><br>
+                </div>
+            {% endfor %}
+        </div>
+        <button type="button" id="add-ingredient">Add Ingredient</button>
+        <br>
+
+        <!-- Steps -->
+        <label for="steps">Steps:</label><br>
+        <div id="step-container">
+            {% for step in steps %}
+                <div>
+                    <textarea name="step[]" value="{{ step }}">{{ step }}</textarea>
+                    <input type="hidden" name="step_id_{{ loop.index }}" value="{{ step.ID }}">
+                    <button type="button" class="remove-step">Remove</button><br>
+                </div>
+            {% endfor %}
+        </div>
+        <button type="button" id="add-step">Add Step</button>
+        <br>
+        
+        <button type="submit">Save Changes</button>
+    </form>
+    
+    <!-- Include jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Include custom JavaScript -->
+    <script src="{{ url_for('static', filename='editrecipe.js')}}"></script>
+
+{% endblock %}

@@ -1,0 +1,80 @@
+/* Reset default margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #FFF7F3;; /* Night dark blue */
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center; /* Center title */
+}
+
+h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically */
+    align-items: center; /* Center buttons horizontally */
+}
+
+.page-link-button {
+    display: flex; /* Use flexbox for button contents */
+    align-items: center; /* Center button contents vertically */
+    text-decoration: none;
+    background-color: #F44E27; /* HEX#F44E27 */
+    color: #FFF7F3; /* HEX#FFF7F3 */
+    border: none;
+    padding: 15px 30px; /* Add padding to each side */
+    margin: 10px;
+    width: calc(100% - 20px); /* Take full width of container with padding */
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    text-align: left; /* Align text to the left */
+}
+
+.page-link-button:hover {
+    background-color: #220021; /* HEX#220021 */
+}
+
+.emoji {
+    margin-left: auto; /* Move emojis to the right */
+}
+
+
+/* Additional styles for file input */
+.file-upload-container {
+    margin-top: 20px;
+}
+
+.file-upload {
+    display: none;
+}
+
+.file-upload-label {
+    background-color: #F44E27; /* HEX#F44E27 */
+    color: #FFF7F3; /* HEX#FFF7F3 */
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.file-upload-label:hover {
+    background-color: #220021; /* HEX#220021 */
+}
+
+#file-text {
+    display: none;
+    margin-top: 10px;
+}
